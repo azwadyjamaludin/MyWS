@@ -3,6 +3,9 @@
         <dependent-module archiveName="MoCoSS_PU.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/MoCoSS_PU/MoCoSS_PU">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="WVisit_PU.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/WVisit_PU/WVisit_PU">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
 		<property name="context-root" value="WebService"/>
 		<wb-resource deploy-path="/WEB-INF/classes" source-path="src/main/java"/>
 	</wb-module>
