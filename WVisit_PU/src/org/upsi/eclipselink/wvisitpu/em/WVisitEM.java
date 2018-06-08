@@ -15,6 +15,10 @@ import javax.persistence.TypedQuery;
 import org.eclipse.persistence.config.PersistenceUnitProperties;
 import org.eclipse.persistence.jpa.PersistenceProvider;
 
+/**
+ * Data Entity Manager for WVisit_PU
+ *
+ */
 public abstract class WVisitEM {
 	private static  Map<String, Object> properties = new HashMap<String, Object>();
 	private static EntityManagerFactory emf = null;

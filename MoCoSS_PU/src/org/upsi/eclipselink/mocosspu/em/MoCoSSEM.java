@@ -39,7 +39,7 @@ public abstract class MoCoSSEM {
 		properties.put(PersistenceUnitProperties.TARGET_SERVER, "WebLogic");
 		properties.put(PersistenceUnitProperties.WEAVING, "true");
 		
-		System.out.print("init ReportEM...");
+		System.out.print("init MoCoSSEM...");
 		return properties;
 	}
 	

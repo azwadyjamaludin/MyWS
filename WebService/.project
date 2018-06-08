@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>WebService</name>
-	<comment>Project WebService created by Buildship.</comment>
+	<comment></comment>
 	<projects>
-		<project>MoCoSS_PU</project>
 		<project>WVisit_PU</project>
+		<project>MoCoSS_PU</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -23,7 +23,7 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.eclipse.buildship.core.gradleprojectbuilder</name>
+			<name>oracle.eclipse.tools.weblogic.sharedLibraryFrameworkValidator</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
@@ -31,8 +31,8 @@
 	<natures>
 		<nature>org.eclipse.jem.workbench.JavaEMFNature</nature>
 		<nature>org.eclipse.wst.common.modulecore.ModuleCoreNature</nature>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
 </projectDescription>
