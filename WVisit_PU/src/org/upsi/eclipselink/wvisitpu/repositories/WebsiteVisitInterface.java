@@ -9,7 +9,7 @@ import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
  * Data interface implementation for data query in WVisit_PU
  * 
  */
-public interface WebsiteVisitRepo {
+public interface WebsiteVisitInterface {
 	
 	List<WebsiteVisit> getList();
 	

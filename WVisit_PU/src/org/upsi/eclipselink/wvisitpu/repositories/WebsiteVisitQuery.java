@@ -13,7 +13,7 @@ import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
  *Data query for WVisit_PU
  *
  */
-public class WebsiteVisitQuery extends WVisitEM implements WebsiteVisitRepo {
+public class WebsiteVisitQuery extends WVisitEM implements WebsiteVisitInterface {
 	private String stringQuery;
 	private Query query;
 	

@@ -7,6 +7,7 @@ import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.upsi.jaxrs.resources.MoCoSSController;
+import org.upsi.jaxrs.resources.PadimimController;
 import org.upsi.jaxrs.resources.WVisitController;
 
 @ApplicationPath("/resources")
@@ -17,6 +18,7 @@ public class WSApplication extends Application   {
 		Set<Class<?>> rsrc = new HashSet<Class<?>>();
 		rsrc.add(MoCoSSController.class);
 		rsrc.add(WVisitController.class);
+		rsrc.add(PadimimController.class);
 		return rsrc;
 	}
 	
