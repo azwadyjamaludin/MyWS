@@ -1,4 +1,4 @@
-package org.upsi.jaxrs;
+package org.azwady.jaxrs;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -6,9 +6,11 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-import org.upsi.jaxrs.resources.MoCoSSController;
-import org.upsi.jaxrs.resources.PadimimController;
-import org.upsi.jaxrs.resources.WVisitController;
+import org.azwady.jaxrs.resources.MoCoSSController;
+import org.azwady.jaxrs.resources.PadimimController;
+import org.azwady.jaxrs.resources.TestController;
+import org.azwady.jaxrs.resources.UIviewController;
+import org.azwady.jaxrs.resources.WVisitController;
 
 @ApplicationPath("/resources")
 public class WSApplication extends Application   {
@@ -19,6 +21,8 @@ public class WSApplication extends Application   {
 		rsrc.add(MoCoSSController.class);
 		rsrc.add(WVisitController.class);
 		rsrc.add(PadimimController.class);
+		rsrc.add(UIviewController.class);
+		rsrc.add(TestController.class);
 		return rsrc;
 	}
 	

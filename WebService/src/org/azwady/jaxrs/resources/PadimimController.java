@@ -1,4 +1,4 @@
-package org.upsi.jaxrs.resources;
+package org.azwady.jaxrs.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

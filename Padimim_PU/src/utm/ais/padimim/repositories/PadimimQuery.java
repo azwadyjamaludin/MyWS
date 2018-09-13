@@ -20,9 +20,14 @@ public class PadimimQuery extends PadimimEM implements PadimimInterface{
 	private PreparedStatement pstatement;
 	private ResultSet rSet;
 	private String stringQuery;
+	private String className = "PadimimQuery";
 		
 	public PadimimQuery() {
-		
+	}
+	
+	@Override
+	public void PUName(String class_name) {
+		class_name = className;
 	}
 	
 	public List<String> testMedicalImageTableController() {
@@ -77,4 +82,6 @@ public class PadimimQuery extends PadimimEM implements PadimimInterface{
 				
 		return oRSet;
 	}
+
+	
 }

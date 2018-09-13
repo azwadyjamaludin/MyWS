@@ -1,10 +1,8 @@
 package org.upsi.eclipselink.wvisitpu.repositories;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.upsi.eclipselink.wvisitpu.em.WVisitEM;
 import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
@@ -15,45 +13,39 @@ import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
  */
 public class WebsiteVisitQuery extends WVisitEM implements WebsiteVisitInterface {
 	private String stringQuery;
-	private Query query;
-	
-	public WebsiteVisitQuery() {
-		
+	private String className = "WebsiteVisitQuery";
+	private TypedQuery<WebsiteVisit> tQuery;
+
+	public WebsiteVisitQuery() {	
 	}
 	
-	@SuppressWarnings("unchecked")
+	@Override
+	public void PUName(String pu_name) {
+		pu_name = className;
+	}
+
+	
 	public List<WebsiteVisit> getList() {
-		WebsiteVisitQuery.startET();
-		stringQuery = "select id, total_visits, visit_date, website_name from website_visit";
-		query = em.createNativeQuery(stringQuery, WebsiteVisit.class);
-
-		return query.getResultList();
+		WVisitEM.startET();
+		stringQuery = "SELECT wv FROM WebsiteVisit wv";
+		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
+		return  tQuery.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<WebsiteVisit> getListByTotalVisit() {
-		WebsiteVisitQuery.startET();
-		stringQuery = "select id, total_visits, visit_date, website_name from website_visit order by total_visits desc";
-		query = em.createNativeQuery(stringQuery, WebsiteVisit.class);
-		query.setMaxResults(5);
-		
-		return query.getResultList();
+		WVisitEM.startET();
+		stringQuery = "SELECT wv FROM WebsiteVisit wv ORDER BY wv.totalVisits DESC";
+		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
+		tQuery.setMaxResults(5);
+		return tQuery.getResultList();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public List<WebsiteVisit> getListByDate(Date selectedDate) {
-		WebsiteVisitQuery.startET();
-		stringQuery = "select id, total_visits, visit_date, website_name from website_visit where visit_date = ? order by total_visits desc";
-		query = em.createNativeQuery(stringQuery, WebsiteVisit.class);
-		query.setParameter(1, selectedDate);
-		query.setMaxResults(5);
-		
-		return query.getResultList();
+	public List<WebsiteVisit> getListByDate(String selectedDate) {
+		WVisitEM.startET();
+		stringQuery = "SELECT wv FROM WebsiteVisit wv WHERE wv.visitDate = ? ORDER BY wv.totalVisits DESC";
+		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
+		tQuery.setParameter(1, selectedDate);
+		tQuery.setMaxResults(5);
+		return tQuery.getResultList();
 	}
-	
-	public SimpleDateFormat simpledate() {
-		return null;
-		
-	}
-
 }

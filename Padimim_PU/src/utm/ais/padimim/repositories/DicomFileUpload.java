@@ -12,8 +12,13 @@ import utm.ais.padimim.EM.PadimimEM;
 public class DicomFileUpload extends PadimimEM implements DicomInterface {
    
      private Query insertQuery, updateQuery;
-     
+     private String className = "DicomFileUpload";
 	public DicomFileUpload() {
+	}
+	
+	@Override
+	public void PUName(String class_name) {
+		class_name = className;
 	}
 	
 	public void uploadFile(String filename, File newfile) throws IOException {

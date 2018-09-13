@@ -3,6 +3,7 @@ package org.upsi.eclipselink.wvisitpu.em;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +25,8 @@ public abstract class WVisitEM {
 	private static EntityManagerFactory emf = null;
 	protected static EntityManager em;
 	protected static EntityTransaction et;
-	private static Connection conn;
+	protected static Connection conn;
+	private static Statement statement;
 	private static PreparedStatement pstmnt;
 	
 	public WVisitEM() {
@@ -76,44 +78,37 @@ public abstract class WVisitEM {
 	}
 	
 	public static Query createQuery(String sql) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createQuery(sql);
 	}
 	
 	public static Query createNamedQuery(String sql) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createNamedQuery(sql);
 	}
 		
 	public static Query createNativeQuery(String sql) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createNativeQuery(sql);
 	}
 	
 	public static Query createNativeQuery(String sql,String resultsetmapping) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createNativeQuery(sql, resultsetmapping);
 	}
 	
 	public static Query createNativeQuery(String sql, Class<?> classArg) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createNativeQuery(sql, classArg);
 	}
 	
 	public static TypedQuery<?> createQuery(String sql, Class<?> classArg) {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 		return em.createQuery(sql, classArg);
 	}
 	
 	public static Connection getConnection() throws SQLException {
-		em = createEntityManager();
-		em.getTransaction().begin();
+		startET();
 			conn = em.unwrap(Connection.class);
 		  if (conn == null) {
 			  System.out.print("Connection not established"); 
@@ -122,9 +117,13 @@ public abstract class WVisitEM {
 		return conn;	 
 	 }
 	
-	public static PreparedStatement prepareStatement(String statement) throws SQLException {
-		pstmnt = getConnection().prepareStatement(statement);
+	public static PreparedStatement prepareStatement(String querystatement) throws SQLException {
+		pstmnt = getConnection().prepareStatement(querystatement);
 		return pstmnt;
 	}
-
+	
+	public static Statement queryStatement() throws SQLException {
+		 statement = getConnection().createStatement();
+		 return statement;
+	}
 }
