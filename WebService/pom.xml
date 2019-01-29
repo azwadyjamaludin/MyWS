@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>WebService</groupId>
   <artifactId>WebService</artifactId>
-  <version>0.1.0-DEV</version>
+  <version>0.2.0-DEV</version>
   <packaging>war</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>

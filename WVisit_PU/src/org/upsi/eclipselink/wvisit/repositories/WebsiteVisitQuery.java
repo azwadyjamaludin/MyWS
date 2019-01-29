@@ -1,29 +1,22 @@
-package org.upsi.eclipselink.wvisitpu.repositories;
+package org.upsi.eclipselink.wvisit.repositories;
 
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import org.upsi.eclipselink.wvisitpu.em.WVisitEM;
-import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
+import org.upsi.eclipselink.wvisit.em.WVisitEM;
+import org.upsi.eclipselink.wvisit.model.WebsiteVisit;
 
 /**
  *Data query for WVisit_PU
  *
  */
-public class WebsiteVisitQuery extends WVisitEM implements WebsiteVisitInterface {
+public class WebsiteVisitQuery extends WVisitEM {
 	private String stringQuery;
-	private String className = "WebsiteVisitQuery";
 	private TypedQuery<WebsiteVisit> tQuery;
 
 	public WebsiteVisitQuery() {	
 	}
-	
-	@Override
-	public void PUName(String pu_name) {
-		pu_name = className;
-	}
-
 	
 	public List<WebsiteVisit> getList() {
 		WVisitEM.startET();

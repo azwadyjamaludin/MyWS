@@ -15,7 +15,7 @@ import org.json.JSONObject;
 @Path("/test")
 public class TestController {
 	private JSONObject jsonObject = new JSONObject();
-	private File jsonFile = new File("/Users/azwady/Public/data/test-data.json");
+	private File jsonFile = new File("/Users/azwadymac/Public/data/test-data.json");
 	private String content = "";
 	private JSONArray jsonArray = new JSONArray();
 	

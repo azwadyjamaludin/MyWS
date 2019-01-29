@@ -15,19 +15,13 @@ import utm.ais.padimim.model.MedicalImageTable;
 import utm.ais.padimim.model.PatientData;
 
 
-public class PadimimQuery extends PadimimEM implements PadimimInterface{
+public class PadimimQuery extends PadimimEM {
 
 	private PreparedStatement pstatement;
 	private ResultSet rSet;
 	private String stringQuery;
-	private String className = "PadimimQuery";
 		
 	public PadimimQuery() {
-	}
-	
-	@Override
-	public void PUName(String class_name) {
-		class_name = className;
 	}
 	
 	public List<String> testMedicalImageTableController() {

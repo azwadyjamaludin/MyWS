@@ -17,7 +17,7 @@ public class UIviewController {
     	
     }
 	
-	@POST
+	@GET
 	@Path("/index")
 	public void index(@Context HttpServletRequest servletRequest,
 					  @Context HttpServletResponse servletResponse) {

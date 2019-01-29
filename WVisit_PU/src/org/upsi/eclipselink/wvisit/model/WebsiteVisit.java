@@ -1,18 +1,8 @@
-package org.upsi.eclipselink.wvisitpu.model;
+package org.upsi.eclipselink.wvisit.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+import javax.persistence.*;
 import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
@@ -25,15 +15,16 @@ import javax.persistence.TemporalType;
 public class WebsiteVisit implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer tableId;
-	private BigDecimal totalVisits;
+	private Integer totalVisits;
 	private Date visitDate;
 	private String websiteName;
-	
+
 	public WebsiteVisit() {
 	}
-	
+
+
 	@Id
-	@SequenceGenerator(name="WEBSITE_VISIT_TABLEID_GENERATOR", sequenceName="WEBSITE_VISIT")
+	@SequenceGenerator(name="WEBSITE_VISIT_TABLEID_GENERATOR", sequenceName="TABLE_ID")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="WEBSITE_VISIT_TABLEID_GENERATOR")
 	@Column(name="table_id")
 	public Integer getTableId() {
@@ -46,11 +37,11 @@ public class WebsiteVisit implements Serializable {
 
 
 	@Column(name="total_visits")
-	public BigDecimal getTotalVisits() {
+	public Integer getTotalVisits() {
 		return this.totalVisits;
 	}
 
-	public void setTotalVisits(BigDecimal totalVisits) {
+	public void setTotalVisits(Integer totalVisits) {
 		this.totalVisits = totalVisits;
 	}
 
@@ -74,5 +65,5 @@ public class WebsiteVisit implements Serializable {
 	public void setWebsiteName(String websiteName) {
 		this.websiteName = websiteName;
 	}
-	
+
 }

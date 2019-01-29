@@ -1,4 +1,4 @@
-package org.upsi.eclipselink.wvisitpu.em;
+package org.upsi.eclipselink.wvisit.em;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,7 +35,7 @@ public abstract class WVisitEM {
 	
 	public static  Map<String, Object> init() {
 		properties.put(PersistenceUnitProperties.JDBC_DRIVER, "org.postgresql.Driver");
-		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:postgresql://localhost:5432/postgres");
+		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:postgresql://localhost:5432/testing");
 		properties.put(PersistenceUnitProperties.JDBC_USER, "postgres");
 		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, "postgres");
 		

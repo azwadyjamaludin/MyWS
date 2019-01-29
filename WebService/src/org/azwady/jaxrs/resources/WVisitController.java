@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.upsi.eclipselink.wvisitpu.model.WebsiteVisit;
-import org.upsi.eclipselink.wvisitpu.repositories.WebsiteVisitQuery;
+import org.upsi.eclipselink.wvisit.model.WebsiteVisit;
+import org.upsi.eclipselink.wvisit.repositories.WebsiteVisitQuery;
 
 @Path("/wvisit")
 public class WVisitController {
