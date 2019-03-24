@@ -6,7 +6,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
@@ -22,7 +21,7 @@ public class UIviewController {
 	public void index(@Context HttpServletRequest servletRequest,
 					  @Context HttpServletResponse servletResponse) {
 		try {
-            servletRequest.getRequestDispatcher("/View/index.html").forward(servletRequest, servletResponse);
+            servletRequest.getRequestDispatcher("/WEB-INF/index.jsp").forward(servletRequest, servletResponse);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -36,7 +35,7 @@ public class UIviewController {
 						@Context HttpServletResponse servletResponse) {
 		
 		try {
-            servletRequest.getRequestDispatcher("/View/setting.html").forward(servletRequest, servletResponse);
+            servletRequest.getRequestDispatcher("/WEB-INF/setting.jsp").forward(servletRequest, servletResponse);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

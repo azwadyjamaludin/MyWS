@@ -8,4 +8,4 @@ WebLogic System Library (built in library of Weblogic Server),
 JAXRS-RI,
 json 20180130.jar,
 
-support link to html/jsp pages (without the use of web.xml , support read files from Users directories.
+support link to html/jsp pages (without the use of web.xml) , support read files from Users directories.

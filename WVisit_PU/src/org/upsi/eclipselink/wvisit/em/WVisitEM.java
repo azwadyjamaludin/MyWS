@@ -67,7 +67,7 @@ public abstract class WVisitEM {
 		et.commit();
 	}
 	
-	public void closeEM() {
+	public static void closeEM() {
 		em.close();
 	}
 	

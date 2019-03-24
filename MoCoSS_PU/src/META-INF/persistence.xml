@@ -4,8 +4,10 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpClient</class>
 		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun</class>
+		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun_File</class>
 		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndClient</class>
 		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndCoun</class>
+		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndCoun_File</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/mocoss"/>
 			<property name="javax.persistence.jdbc.user" value="postgres"/>

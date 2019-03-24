@@ -1,6 +1,5 @@
 package org.azwady.jaxrs.resources;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.upsi.eclipselink.wvisit.model.WebsiteVisit;
 import org.upsi.eclipselink.wvisit.repositories.WebsiteVisitQuery;
@@ -36,7 +34,7 @@ public class WVisitController {
 	@GET
 	@Path("/getlist")
 	@Produces("application/json")
-	public Response getList() throws JSONException, SQLException {
+	public Response getList() {
 		 wvList = wvQuery.getList();
 		jsonRoot.put("getlist", wvList); //put list into json
 		return Response.status(200).entity(jsonRoot.toString(4)).build();
@@ -45,7 +43,7 @@ public class WVisitController {
 	@GET
 	@Path("/getlistbytotalvisit")
 	@Produces("application/json")
-	public Response getListByTotalVisit() throws SQLException {
+	public Response getListByTotalVisit() {
 		wvList = wvQuery.getListByTotalVisit();
 		jsonRoot.put("getlistbytotalvisit", wvList);
 		return Response.status(200).entity(jsonRoot.toString(4)).build();
@@ -54,7 +52,7 @@ public class WVisitController {
 	@GET
 	@Path("/getlistbydate")
 	@Produces("application/json")
-	public Response getListByDate(@QueryParam("selectedDate")String selectedDate) throws SQLException {
+	public Response getListByDate(@QueryParam("selectedDate")String selectedDate) {
 		wvList = wvQuery.getListByDate(selectedDate);
 		jsonRoot.put("getlistbydate", wvList);
 		return Response.status(200).entity(jsonRoot.toString()).build();

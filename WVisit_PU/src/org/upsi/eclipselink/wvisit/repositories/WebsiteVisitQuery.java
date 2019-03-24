@@ -20,25 +20,46 @@ public class WebsiteVisitQuery extends WVisitEM {
 	
 	public List<WebsiteVisit> getList() {
 		WVisitEM.startET();
+		try {
 		stringQuery = "SELECT wv FROM WebsiteVisit wv";
 		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
 		return  tQuery.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			WVisitEM.closeEM();
+		}
+		return null;
 	}
 	
 	public List<WebsiteVisit> getListByTotalVisit() {
 		WVisitEM.startET();
+		try {
 		stringQuery = "SELECT wv FROM WebsiteVisit wv ORDER BY wv.totalVisits DESC";
 		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
 		tQuery.setMaxResults(5);
 		return tQuery.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			WVisitEM.closeEM();
+		}
+		return null;
 	}
 	
 	public List<WebsiteVisit> getListByDate(String selectedDate) {
 		WVisitEM.startET();
+		try {
 		stringQuery = "SELECT wv FROM WebsiteVisit wv WHERE wv.visitDate = ? ORDER BY wv.totalVisits DESC";
 		tQuery = em.createQuery(stringQuery, WebsiteVisit.class);
 		tQuery.setParameter(1, selectedDate);
 		tQuery.setMaxResults(5);
 		return tQuery.getResultList();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			WVisitEM.closeEM();
+		}
+		return null;
 	}
 }

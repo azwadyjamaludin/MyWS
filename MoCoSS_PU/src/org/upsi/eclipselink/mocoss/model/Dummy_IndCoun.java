@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.sql.Time;
 import java.util.Date;
+import static javax.persistence.TemporalType.TIMESTAMP;
 
 
 /**
@@ -16,13 +17,11 @@ import java.util.Date;
 public class Dummy_IndCoun implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer tableId;
-	private byte[] avFile;
+	private String clientCode;
 	private Date sessionDate;
 	private Time sessionHourEnd;
 	private Time sessionHourStart;
 	private Integer sessionNum;
-	private byte[] sessionReport;
-	private Dummy_IndClient dummyIndClient;
 
 	public Dummy_IndCoun() {
 	}
@@ -39,17 +38,17 @@ public class Dummy_IndCoun implements Serializable {
 	}
 
 
-	@Column(name="av_file")
-	public byte[] getAvFile() {
-		return this.avFile;
+	@Column(name="client_code")
+	public String getClientCode() {
+		return this.clientCode;
 	}
 
-	public void setAvFile(byte[] avFile) {
-		this.avFile = avFile;
+	public void setClientCode(String clientCode) {
+		this.clientCode = clientCode;
 	}
 
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TIMESTAMP)
 	@Column(name="session_date")
 	public Date getSessionDate() {
 		return this.sessionDate;
@@ -87,28 +86,6 @@ public class Dummy_IndCoun implements Serializable {
 
 	public void setSessionNum(Integer sessionNum) {
 		this.sessionNum = sessionNum;
-	}
-
-
-	@Column(name="session_report")
-	public byte[] getSessionReport() {
-		return this.sessionReport;
-	}
-
-	public void setSessionReport(byte[] sessionReport) {
-		this.sessionReport = sessionReport;
-	}
-
-
-	//bi-directional many-to-one association to Dummy_IndClient
-	@ManyToOne
-	@JoinColumn(name="client_code", referencedColumnName="client_code")
-	public Dummy_IndClient getDummyIndClient() {
-		return this.dummyIndClient;
-	}
-
-	public void setDummyIndClient(Dummy_IndClient dummyIndClient) {
-		this.dummyIndClient = dummyIndClient;
 	}
 
 }

@@ -2,7 +2,6 @@ package org.upsi.eclipselink.mocoss.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -15,10 +14,10 @@ import java.util.List;
 public class Dummy_IndClient implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer tableId;
+	private String clientCode;
 	private String clientDetail;
 	private String clientName;
 	private String discussionCategory;
-	private List<Dummy_IndCoun> dummyIndCouns;
 
 	public Dummy_IndClient() {
 	}
@@ -32,6 +31,16 @@ public class Dummy_IndClient implements Serializable {
 
 	public void setTableId(Integer tableId) {
 		this.tableId = tableId;
+	}
+
+
+	@Column(name="client_code")
+	public String getClientCode() {
+		return this.clientCode;
+	}
+
+	public void setClientCode(String clientCode) {
+		this.clientCode = clientCode;
 	}
 
 
@@ -62,31 +71,6 @@ public class Dummy_IndClient implements Serializable {
 
 	public void setDiscussionCategory(String discussionCategory) {
 		this.discussionCategory = discussionCategory;
-	}
-
-
-	//bi-directional many-to-one association to Dummy_IndCoun
-	@OneToMany(mappedBy="dummyIndClient")
-	public List<Dummy_IndCoun> getDummyIndCouns() {
-		return this.dummyIndCouns;
-	}
-
-	public void setDummyIndCouns(List<Dummy_IndCoun> dummyIndCouns) {
-		this.dummyIndCouns = dummyIndCouns;
-	}
-
-	public Dummy_IndCoun addDummyIndCoun(Dummy_IndCoun dummyIndCoun) {
-		getDummyIndCouns().add(dummyIndCoun);
-		dummyIndCoun.setDummyIndClient(this);
-
-		return dummyIndCoun;
-	}
-
-	public Dummy_IndCoun removeDummyIndCoun(Dummy_IndCoun dummyIndCoun) {
-		getDummyIndCouns().remove(dummyIndCoun);
-		dummyIndCoun.setDummyIndClient(null);
-
-		return dummyIndCoun;
 	}
 
 }

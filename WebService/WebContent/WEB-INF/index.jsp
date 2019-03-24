@@ -1,7 +1,11 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--<meta charset="UTF-8">-->
 <!--<link rel="shortcut icon" href="imgAtIndex/1SPEKS.ico" />-->
 <title>azwady WebService-Index Page</title>
 <style type="text/css">
@@ -28,7 +32,7 @@ position:absolute;
     window.location.href = url;
     }
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+ 
 </head>
 <body>
  	  <div style="text-align:center">
@@ -58,13 +62,13 @@ position:absolute;
  	  	<br>
  	  	<br>
  	  	<br>
+ 	<footer>
  	  <div style="text-align:center">
- 	  <footer>
  	  <p><small>Copyright @azwady 2018</small></p>
- 	  <img alt="iOS" src="Images/logo-ios@2x.png" accept="image/png" style="width:75px;height:48px;">
- 	  <img alt="Android" src="Images/logo-android.png" accept="image/png" style="width:60px;height:48px;">
- 	  </footer>
- 	  </div>
+ 	  <img alt="iOS" src="Images/logo-ios@2x.png" style="width:75px;height:48px;">
+ 	  <img alt="Android" src="Images/logo-android.png" style="width:60px;height:48px;">
  	  
+ 	  </div>
+ </footer>	  
 </body>
 </html>

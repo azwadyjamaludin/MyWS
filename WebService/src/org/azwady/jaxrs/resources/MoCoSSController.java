@@ -1,22 +1,26 @@
 package org.azwady.jaxrs.resources;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
+import org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun;
+import org.upsi.eclipselink.mocoss.model.Dummy_IndCoun;
 import org.upsi.eclipselink.mocoss.repositories.MoCoSSQuery;
 
 @Path("/mocoss")
 public class MoCoSSController {
 	private JSONObject jsonObject = new JSONObject();
-	private JSONArray jsonArray = new JSONArray();
+	//private JSONArray jsonArray = new JSONArray();
 	private MoCoSSQuery mQuery = new MoCoSSQuery();
+	private List<Dummy_IndCoun> dummyIndList = new ArrayList<Dummy_IndCoun>();
+	private List<Dummy_GrpCoun> dummyGrpList = new ArrayList<Dummy_GrpCoun>();
 	
 	public MoCoSSController() {
 		
@@ -33,34 +37,13 @@ public class MoCoSSController {
 	@GET
 	@Path("/dummyData")
 	@Produces("application/json")
-	public Response dummyData() throws SQLException {
-		JSONObject jsonObjectInd = new JSONObject();
-		JSONArray jsonArrayInd = new JSONArray();
+	public Response dummyData() {
 		
-		JSONObject jsonObjectGrp = new JSONObject();
-		JSONArray jsonArrayGrp = new JSONArray();
+		dummyIndList = mQuery.dummyIndList();
+		jsonObject.put("dummyInd", dummyIndList);
 		
-		ResultSet setInd = mQuery.dummyIndCoun();
-			while (setInd.next()) {
-				jsonObjectInd.put("sessionDate", setInd.getDate("session_date"));
-				jsonObjectInd.put("session num", setInd.getInt("session_num"));
-				jsonObjectInd.put("session code", setInd.getString("client_code"));
-				jsonObjectInd.put("session start", setInd.getTime("session_hour_start"));
-				jsonObjectInd.put("session end", setInd.getTime("session_hour_end"));
-				jsonArrayInd.put(jsonObjectInd);
-			}
-			jsonObject.put("dummyInd", jsonArrayInd);
-			
-		ResultSet setGrp = mQuery.dummyGrpCoun();
-			while (setGrp.next()) {
-				jsonObjectGrp.put("session date", setGrp.getDate("session_date"));
-				jsonObjectGrp.put("session num", setGrp.getInt("session_num"));
-				jsonObjectGrp.put("session code", setGrp.getString("client_group_code"));
-				jsonObjectGrp.put("session start", setGrp.getTime("session_hour_start"));
-				jsonObjectGrp.put("session end", setGrp.getTime("session_hour_end"));
-				jsonArrayGrp.put(jsonObjectGrp);
-			}
-			jsonObject.put("dummyGrp", jsonArrayGrp);
+		dummyGrpList = mQuery.dummyGrpList();
+		jsonObject.put("dummyGrp", dummyGrpList);
 			
 		return Response.status(200).entity(jsonObject.toString(4)).build();
 	}
