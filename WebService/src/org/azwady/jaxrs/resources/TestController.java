@@ -24,6 +24,14 @@ public class TestController {
 	}
 	
 	@GET
+	@Path("/startWS")
+	@Produces("text/html")
+	public Response start() throws IOException {
+		String htmlH1 = "<h1>Welcome to azwady Web Service</>";
+		return Response.status(200).entity(htmlH1).build(); 
+	}
+	
+	@GET
 	@Path("/extraService")
 	@Produces("application/json")
 	public Response extraService() throws IOException {

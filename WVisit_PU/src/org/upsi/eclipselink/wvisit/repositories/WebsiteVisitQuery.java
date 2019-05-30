@@ -7,6 +7,8 @@ import javax.persistence.TypedQuery;
 import org.upsi.eclipselink.wvisit.em.WVisitEM;
 import org.upsi.eclipselink.wvisit.model.WebsiteVisit;
 
+
+
 /**
  *Data query for WVisit_PU
  *

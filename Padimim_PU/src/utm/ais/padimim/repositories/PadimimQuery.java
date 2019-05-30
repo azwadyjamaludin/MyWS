@@ -1,81 +1,203 @@
 package utm.ais.padimim.repositories;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.jdbc.OracleResultSet;
 import utm.ais.padimim.EM.PadimimEM;
-import utm.ais.padimim.model.MedicalImageTable;
-import utm.ais.padimim.model.PatientData;
-
+import utm.ais.padimim.model.MainDicomTag;
+import utm.ais.padimim.model.PatientRecyclingOrder;
+import utm.ais.padimim.model.Resource;
 
 public class PadimimQuery extends PadimimEM {
-
-	private PreparedStatement pstatement;
-	private ResultSet rSet;
 	private String stringQuery;
-		
+	private TypedQuery<Resource> tQueryR;
+	private TypedQuery<PatientRecyclingOrder> tQueryP;
+	private TypedQuery<MainDicomTag> tQueryD;
+	
+	
 	public PadimimQuery() {
 	}
 	
-	public List<String> testMedicalImageTableController() {
-		List<String> test = new ArrayList<String>();
-		test.add("testing");
-		test.add("PADI_MIM");
-		test.add("WebService");
-		return test;
-	}
 	
-	public List<PatientData> getPatientNameAndModality() {
+	public List<Resource> getAllResource() {
 		PadimimEM.startET();
-		stringQuery = "SELECT pd FROM PatientData pd ORDER by pd.patientName";
-		TypedQuery<PatientData> typequery = em.createQuery(stringQuery,PatientData.class);
-			List<PatientData> pds = typequery.getResultList();
-		
-		return pds;
+		try {
+			stringQuery = "SELECT r FROM Resource r";
+			tQueryR = em.createQuery(stringQuery, Resource.class);
+			return tQueryR.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
 	}
 	
-	public List<MedicalImageTable> getImageListByPatientName(String patientName) {
+	public List<Resource> getResourceByPIDRange() {
 		PadimimEM.startET();
-		stringQuery = "SELECT mit FROM MedicalImageTable mit WHERE mit.patientName = :patientName";
-		TypedQuery<MedicalImageTable> typedquery = em.createQuery(stringQuery,MedicalImageTable.class);
-		typedquery.setParameter("patientName", patientName);  
-		List<MedicalImageTable> mits = typedquery.getResultList();
-				
-		return mits;
+		try {
+			stringQuery = "SELECT r FROM Resource r WHERE r.parentId BETWEEN :start AND :end";
+			tQueryR = em.createQuery(stringQuery, Resource.class);
+			tQueryR.setParameter("start", 1);
+			tQueryR.setParameter("end", 2);
+			return tQueryR.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
 	}
 	
-	public ResultSet  getPatientNameAndModalitySet() throws SQLException {
-		stringQuery = "select PATIENT_NAME, MODALITY from PATIENT_DATA ";
-		pstatement = PadimimQuery.prepareStatement(stringQuery);
-		
-		rSet = pstatement.executeQuery();
-		return rSet;
+	public List<PatientRecyclingOrder> getPatientRecycling() {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT p FROM PatientRecyclingOrder p";
+			tQueryP = em.createQuery(stringQuery, PatientRecyclingOrder.class);
+			return tQueryP.getResultList();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
 	}
 	
-	public ResultSet  getPatientNameAndModalitySet2(String patientName) throws SQLException {
-		stringQuery = "select PATIENT_NAME, MODALITY from PATIENT_DATA where PATIENT_NAME = ? ";
-		pstatement = PadimimQuery.prepareStatement(stringQuery);
-		pstatement.setString(1, patientName);
-		rSet = pstatement.executeQuery();
-		return rSet;
+	public MainDicomTag getDicomTagPatientName(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 16);
+			tQueryD.setParameter("te", 16);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
 	}
 	
-	public OracleResultSet getImageListByPatientNameSet(String patientName) throws SQLException {
-		OracleResultSet oRSet;
-		stringQuery = "Select IMG_FILENAME, IMAGE from MEDICAL_IMAGE_TABLE where PATIENT_NAME = ?";
-		OraclePreparedStatement opstmnt = PadimimQuery.oraclePrepareStatement(stringQuery);
-		opstmnt.setString(1, patientName);  
-		oRSet = (OracleResultSet) opstmnt.executeQuery();
-				
-		return oRSet;
+	public MainDicomTag getDicomTagPatientID(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 16);
+			tQueryD.setParameter("te", 32);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
+	
+	public MainDicomTag getDicomTagDOB(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 16);
+			tQueryD.setParameter("te", 48);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
+	
+	public MainDicomTag getDicomTagSex(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 16);
+			tQueryD.setParameter("te", 64);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
 	}
 
+	public MainDicomTag getDicomTagStudyDate(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 8);
+			tQueryD.setParameter("te", 32);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
 	
+	public MainDicomTag getDicomTagStudyName(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 8);
+			tQueryD.setParameter("te", 4144);	
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
+	
+	public MainDicomTag getDicomTagInstitution(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 8);
+			tQueryD.setParameter("te", 128);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
+	
+	public MainDicomTag getDicomTagAccessNum(String id) {
+		PadimimEM.startET();
+		try {
+			stringQuery = "SELECT dt FROM MainDicomTag dt WHERE dt.resource.internalId=:id and dt.id.tagGroup=:tg and dt.id.tagElement=:te and dt.value<>''";
+			tQueryD = em.createQuery(stringQuery, MainDicomTag.class);
+			tQueryD.setParameter("id", id);
+			tQueryD.setParameter("tg", 8);
+			tQueryD.setParameter("te", 80);
+			return tQueryD.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			PadimimEM.closeEM();
+		}
+		return null;
+	}
+
 }

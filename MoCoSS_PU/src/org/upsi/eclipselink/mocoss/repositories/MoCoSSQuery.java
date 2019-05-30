@@ -1,45 +1,31 @@
 package org.upsi.eclipselink.mocoss.repositories;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.persistence.TypedQuery;
 
 import org.upsi.eclipselink.mocoss.em.MoCoSSEM;
-import org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun;
-import org.upsi.eclipselink.mocoss.model.Dummy_IndCoun;
+import org.upsi.eclipselink.mocoss.model.DummyConsdet;
+import org.upsi.eclipselink.mocoss.model.DummyGrp;
+import org.upsi.eclipselink.mocoss.model.DummyInd;
+import org.upsi.eclipselink.mocoss.model.DummyPsytest;
+import org.upsi.eclipselink.mocoss.model.DummyRefdet;
 
 public class MoCoSSQuery extends MoCoSSEM{
 	private String stringQuery;
 	
-	private ResultSet rSet;
-	private PreparedStatement pstatement;
+	//private ResultSet rSet;
+	//private PreparedStatement pstatement;
 	
 	public MoCoSSQuery() {
 	}
 	
-	public ResultSet dummyIndCoun() throws SQLException {
-		stringQuery = "SELECT session_date, session_num, client_code, session_hour_start, session_hour_end FROM \"dummy_IndCoun\" ORDER BY session_date";
-		pstatement = MoCoSSEM.prepareStatement(stringQuery);
-		rSet = pstatement.executeQuery();
-		return rSet;
-	}
-	
-	public ResultSet dummyGrpCoun() throws SQLException {
-		stringQuery = "SELECT session_date, session_num, client_group_code, session_hour_start, session_hour_end FROM \"dummy_GrpCoun\" ORDER BY session_date";
-		pstatement = MoCoSSEM.prepareStatement(stringQuery);
-		rSet = pstatement.executeQuery();
-		return rSet;
-	}
-	
-	public List <Dummy_IndCoun> dummyIndList() {
+	public List <DummyInd> dummyIndList() {
 		MoCoSSEM.startET();
 		try {
-		stringQuery = "SELECT ind FROM Dummy_IndCoun ind ORDER BY ind.sessionDate ASC";
-		TypedQuery<Dummy_IndCoun>tQueryInd = em.createQuery(stringQuery, Dummy_IndCoun.class);
-		List<Dummy_IndCoun> indList = tQueryInd.getResultList();
+		stringQuery = "SELECT ind FROM DummyInd ind ORDER BY ind.sessionDate ASC";
+		TypedQuery<DummyInd>tQueryInd = em.createQuery(stringQuery, DummyInd.class);
+		List<DummyInd> indList = tQueryInd.getResultList();
 		return indList;
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -49,14 +35,59 @@ public class MoCoSSQuery extends MoCoSSEM{
 		return null;
 	}
 	
-	public List <Dummy_GrpCoun> dummyGrpList() {
+	public List <DummyGrp> dummyGrpList() {
 		MoCoSSEM.startET();
 		try {
-		stringQuery = "SELECT grp FROM Dummy_GrpCoun grp ORDER BY grp.sessionDate ASC";
-		TypedQuery<Dummy_GrpCoun> tQueryGrp = em.createQuery(stringQuery,Dummy_GrpCoun.class);
-		List<Dummy_GrpCoun> grpList = tQueryGrp.getResultList();
+		stringQuery = "SELECT grp FROM DummyGrp grp ORDER BY grp.sessionDate ASC";
+		TypedQuery<DummyGrp> tQueryGrp = em.createQuery(stringQuery,DummyGrp.class);
+		List<DummyGrp> grpList = tQueryGrp.getResultList();
 		return grpList;
 		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			MoCoSSEM.closeEM();
+		}
+		return null;
+	}
+	
+	public List <DummyPsytest> dummyPTList() {
+		MoCoSSEM.startET();
+		try {
+			stringQuery = "SELECT pt FROM DummyPsytest pt ORDER BY pt.psytestDate ASC";
+			TypedQuery<DummyPsytest> tQueryPT = em.createQuery(stringQuery, DummyPsytest.class);
+			List<DummyPsytest> ptList = tQueryPT.getResultList();
+			return ptList;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			MoCoSSEM.closeEM();
+		}
+		return null;
+	}
+	
+	public List <DummyRefdet> dummyRDList() {
+		MoCoSSEM.startET();
+		try {
+			stringQuery = "SELECT rd FROM DummyRefdet rd ORDER BY rd.referStud ASC";
+			TypedQuery<DummyRefdet> tQueryRD = em.createQuery(stringQuery, DummyRefdet.class);
+			List<DummyRefdet> rdList = tQueryRD.getResultList();
+			return rdList;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			MoCoSSEM.closeEM();
+		}
+		return null;
+	}
+	
+	public List <DummyConsdet> dummyCDList() {
+		MoCoSSEM.startET();
+		try {
+			stringQuery = "SELECT cd FROM DummyConsdet cd ORDER BY cd.consField ASC";
+			TypedQuery<DummyConsdet> tQueryCD = em.createQuery(stringQuery, DummyConsdet.class);
+			List<DummyConsdet> cdList = tQueryCD.getResultList();
+			return cdList;
+		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			MoCoSSEM.closeEM();

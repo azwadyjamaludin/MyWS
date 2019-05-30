@@ -2,17 +2,19 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="MoCoSS_PU" transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpClient</class>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun</class>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_GrpCoun_File</class>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndClient</class>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndCoun</class>
-		<class>org.upsi.eclipselink.mocoss.model.Dummy_IndCoun_File</class>
+		<class>org.upsi.eclipselink.mocoss.model.DummyGrp</class>
+		<class>org.upsi.eclipselink.mocoss.model.DummyInd</class>
+		<class>org.upsi.eclipselink.mocoss.model.DummyConsdet</class>
+		<class>org.upsi.eclipselink.mocoss.model.DummyPsytest</class>
+		<class>org.upsi.eclipselink.mocoss.model.DummyRefdet</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/mocoss"/>
-			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="postgres"/>
-			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+			<property name="eclipselink.target-database" value="MySQL"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mocoss"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value="asw135091"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="eclipselink.weaving" value="true"/>
+			<property name="eclipselink.logging.level" value="FINEST"/>
 		</properties>
 	</persistence-unit>
 </persistence>

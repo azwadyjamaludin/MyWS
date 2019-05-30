@@ -3,9 +3,9 @@
 	<name>WebService</name>
 	<comment></comment>
 	<projects>
+		<project>Padimim_PU</project>
 		<project>WVisit_PU</project>
 		<project>MoCoSS_PU</project>
-		<project>Padimim_PU</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

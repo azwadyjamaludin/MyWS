@@ -30,15 +30,15 @@ public abstract class MoCoSSEM {
 	}
 	
 	public static  Map<String, Object> init() {
-		properties.put(PersistenceUnitProperties.JDBC_DRIVER, "org.postgresql.Driver");
-		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:postgresql://localhost:5432/mocoss");
-		properties.put(PersistenceUnitProperties.JDBC_USER, "postgres");
-		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, "postgres");
+		properties.put(PersistenceUnitProperties.JDBC_DRIVER, "com.mysql.jdbc.Driver");
+		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:mysql://localhost:3306/mocoss");
+		properties.put(PersistenceUnitProperties.JDBC_USER, "root");
+		properties.put(PersistenceUnitProperties.JDBC_PASSWORD, "asw135091");
 		
 		properties.put(PersistenceUnitProperties.TRANSACTION_TYPE,"RESOURCE_LOCAL");
 		properties.put(PersistenceUnitProperties.CLASSLOADER,MoCoSSEM.class.getClassLoader());
 		properties.put(PersistenceUnitProperties.LOGGING_LEVEL, "FINEST");
-		properties.put(PersistenceUnitProperties.TARGET_SERVER, "WebLogic");
+		properties.put(PersistenceUnitProperties.TARGET_DATABASE, "MySQL");
 		properties.put(PersistenceUnitProperties.WEAVING, "true");
 		
 		System.out.print("init MoCoSSEM...");

@@ -2,7 +2,6 @@ package org.upsi.eclipselink.wvisit.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.Date;
 
 
 /**
@@ -14,9 +13,9 @@ import java.util.Date;
 @NamedQuery(name="WebsiteVisit.findAll", query="SELECT w FROM WebsiteVisit w")
 public class WebsiteVisit implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Integer tableId;
-	private Integer totalVisits;
-	private Date visitDate;
+	private int tableId;
+	private int totalVisits;
+	private String visitDate;
 	private String websiteName;
 
 	public WebsiteVisit() {
@@ -24,35 +23,34 @@ public class WebsiteVisit implements Serializable {
 
 
 	@Id
-	@SequenceGenerator(name="WEBSITE_VISIT_TABLEID_GENERATOR", sequenceName="TABLE_ID")
+	@SequenceGenerator(name="WEBSITE_VISIT_TABLEID_GENERATOR", sequenceName="WEBSITE_VISIT")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="WEBSITE_VISIT_TABLEID_GENERATOR")
 	@Column(name="table_id")
-	public Integer getTableId() {
+	public int getTableId() {
 		return this.tableId;
 	}
 
-	public void setTableId(Integer tableId) {
+	public void setTableId(int tableId) {
 		this.tableId = tableId;
 	}
 
 
 	@Column(name="total_visits")
-	public Integer getTotalVisits() {
+	public int getTotalVisits() {
 		return this.totalVisits;
 	}
 
-	public void setTotalVisits(Integer totalVisits) {
+	public void setTotalVisits(int totalVisits) {
 		this.totalVisits = totalVisits;
 	}
 
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="visit_date")
-	public Date getVisitDate() {
+	public String getVisitDate() {
 		return this.visitDate;
 	}
 
-	public void setVisitDate(Date visitDate) {
+	public void setVisitDate(String visitDate) {
 		this.visitDate = visitDate;
 	}
 
